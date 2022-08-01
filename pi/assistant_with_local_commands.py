@@ -25,6 +25,7 @@ import logging
 import platform
 import subprocess
 import sys
+import requests
 
 from google.assistant.library.event import EventType
 
@@ -45,19 +46,15 @@ def say_ip():
     ip_address = subprocess.check_output("hostname -I | cut -d' ' -f1", shell=True)
     tts.say('My IP address is %s' % ip_address.decode('utf-8'))
 
-def mini():
-    tts.say("I will now miniaturize the person in VR.")
-
-def maxi():
-    tts.say("I will now enlarge the person in VR.")
-
 
 min_list = ['small', 'smaller', 'tiny', 'tinier', 'little', 'littler', 'miniaturize']
 max_list = ['large', 'larger', 'big', 'bigger', 'huge', 'huger', 'enormous', 'colossal', 'massive', 'enlarge']
-player_list = ['mate', 'partner', 'colleague', 'ally', 'teammate', 'person']
+player_list = ['mate', 'partner', 'colleague', 'ally', 'teammate', 'person', 'teammates']
 min_list = set(min_list)
 max_list = set(max_list)
 player_list = set(player_list)
+
+unity_ip_address = "172.20.10.2:4444"
 def find_in_list(sentence):
     make_small = False
     make_big = False
@@ -72,12 +69,14 @@ def find_in_list(sentence):
             player = True
 
     if player and make_small:
-        # submit GET request to /make_small
+        # submit GET request to /miniaturize
         tts.say('Making your team mate in VR smaller!')
+        r = requests.get("http://" + unity_ip_address + "/minimize")
         return True
     elif player and make_big:
-        # submit GET request to /make_big
+        # submit GET request to /maximize
         tts.say('Making your team mate in VR larger!')
+        r = requests.get("http://" + unity_ip_address + "/maximize")
         return True
 
     return False
