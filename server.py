@@ -18,21 +18,17 @@ mqtt = Mqtt(app)
 def handle_connect(client, userdata, flags, rc):
     mqtt.subscribe('stat/localbytes_plug/POWER')
 
+
 @mqtt.on_message()
 def handle_mqtt_message(client, userdata, message):
-
     plug_data["topic"] = message.topic
     plug_data["payload"] = message.payload.decode()
 
-    print(plug_data)
 
-
-@app.route('/toggle', methods=['POST'])
+@app.route('/toggle', methods=['GET'])
 def toggle():
-    request_data = request.get_json()
     # publish_result = mqtt.publish("cmnd/localbytes_plug/Power", "TOGGLE")
-
-    publish_result = mqtt.publish(request_data['topic'], request_data['msg'].upper())
+    publish_result = mqtt.publish("cmnd/localbytes_plug/Power", "TOGGLE")
 
     return jsonify({'status': publish_result[0]})
 
