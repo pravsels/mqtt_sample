@@ -49,7 +49,7 @@ def say_ip():
 
 min_list = ['small', 'smaller', 'tiny', 'tinier', 'little', 'littler', 'miniaturize']
 max_list = ['large', 'larger', 'big', 'bigger', 'huge', 'huger', 'enormous', 'colossal', 'massive', 'enlarge']
-player_list = ['mate', 'partner', 'colleague', 'ally', 'teammate', 'person', 'teammates']
+player_list = ['mate', 'partner', 'colleague', 'ally', 'teammate', 'person', 'teammates', 'user', 'player']
 min_list = set(min_list)
 max_list = set(max_list)
 player_list = set(player_list)
