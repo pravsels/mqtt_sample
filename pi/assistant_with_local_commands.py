@@ -49,12 +49,20 @@ def say_ip():
 
 min_list = ['small', 'smaller', 'tiny', 'tinier', 'little', 'littler', 'miniaturize']
 max_list = ['large', 'larger', 'big', 'bigger', 'huge', 'huger', 'enormous', 'colossal', 'massive', 'enlarge']
-player_list = ['mate', 'partner', 'colleague', 'ally', 'teammate', 'person', 'teammates', 'user', 'player']
+player_list = ['mate', 'mates', 'partner', 'partners', 'colleague', 'colleagues', 'ally', 'allies', 'teammate', 'teammates', 'person', 'persons', 'user', 'users', 'player', 'players', 'friend', 'friends']
 min_list = set(min_list)
 max_list = set(max_list)
 player_list = set(player_list)
 
-unity_ip_address = "172.20.10.2:4444"
+quest_ip_address = "192.168.1.13:4444"
+
+def make_request(url):
+    try:
+        r = requests.get("http://" + quest_ip_address + url, timeout=3)
+        r.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        print(e)
+
 def find_in_list(sentence):
     make_small = False
     make_big = False
@@ -71,12 +79,12 @@ def find_in_list(sentence):
     if player and make_small:
         # submit GET request to /miniaturize
         tts.say('Making your team mate in VR smaller!')
-        r = requests.get("http://" + unity_ip_address + "/minimize")
+        make_request("/minimize")
         return True
     elif player and make_big:
         # submit GET request to /maximize
         tts.say('Making your team mate in VR larger!')
-        r = requests.get("http://" + unity_ip_address + "/maximize")
+        make_request("/maximize")
         return True
 
     return False
