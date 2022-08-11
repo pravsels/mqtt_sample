@@ -55,6 +55,7 @@ max_list = set(max_list)
 player_list = set(player_list)
 
 quest_ip_address = "192.168.1.13:4444"
+tts_volume = 75
 
 def make_request(url):
     try:
@@ -78,12 +79,12 @@ def find_in_list(sentence):
 
     if player and make_small:
         # submit GET request to /miniaturize
-        tts.say('Making your team mate in VR smaller!')
+        tts.say('Making your team mate in VR smaller!', volume=tts_volume)
         make_request("/minimize")
         return True
     elif player and make_big:
         # submit GET request to /maximize
-        tts.say('Making your team mate in VR larger!')
+        tts.say('Making your team mate in VR larger!', volume=tts_volume)
         make_request("/maximize")
         return True
 
