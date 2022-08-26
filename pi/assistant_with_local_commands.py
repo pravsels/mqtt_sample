@@ -67,15 +67,15 @@ def make_request(url):
 def find_in_list(sentence):
     make_small = False
     make_big = False
-    player = False
+    player = True
 
     for word in sentence.split():
         if word in min_list:
             make_small = True
         if word in max_list:
             make_big = True
-        if word in player_list:
-            player = True
+        #if word in player_list:
+        #    player = True
 
     if player and make_small:
         # submit GET request to /miniaturize
