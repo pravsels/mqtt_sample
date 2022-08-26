@@ -47,8 +47,8 @@ def say_ip():
     tts.say('My IP address is %s' % ip_address.decode('utf-8'))
 
 
-min_list = ['small', 'smaller', 'tiny', 'tinier', 'little', 'littler', 'miniaturize']
-max_list = ['large', 'larger', 'big', 'bigger', 'huge', 'huger', 'enormous', 'colossal', 'massive', 'enlarge']
+min_list = ['small', 'smaller', 'tiny', 'tinier', 'little', 'littler', 'miniaturize', 'ant', 'ants']
+max_list = ['large', 'larger', 'big', 'bigger', 'huge', 'huger', 'enormous', 'colossal', 'massive', 'enlarge', 'giant', 'giants']
 player_list = ['mate', 'mates', 'partner', 'partners', 'colleague', 'colleagues', 'ally', 'allies', 'teammate', 'teammates', 'person', 'persons', 'user', 'users', 'player', 'players', 'friend', 'friends', 'avatar', 'avatars']
 min_list = set(min_list)
 max_list = set(max_list)
